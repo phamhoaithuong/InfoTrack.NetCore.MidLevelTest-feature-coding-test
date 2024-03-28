@@ -1,0 +1,24 @@
+version: 1.0
+configuration:
+  has_webserver: false
+  readonly_paths:
+    - WebApplication.IntegrationTests/*
+    - WebApplication.Infrastructure/Contexts/InMemoryContext.cs
+    - WebApplication.Infrastructure/Entities/ContactDetail.cs
+    - WebApplication.Infrastructure/Entities/User.cs
+  ide_config:
+    default_open_files:
+      - README.md
+      - WebApplication/Controllers/UsersController.cs
+      - WebApplication.Core/Users/Commands/UpdateUserCommand.cs
+      - WebApplication.Core/Users/Queries/ListUsersQuery.cs
+      - WebApplication.Core/Common/Behaviours/RequestValidationBehaviour.cs
+      - WebApplication.Infrastructure/Services/UserService.cs
+    project_menu:
+      run: dotnet restore; dotnet build; dotnet run --project WebApplication/WebApplication.csproj
+      install: dotnet restore; dotnet build;
+      test: rm -rf reports && dotnet build && dotnet test --logger xunit --results-directory ./reports/
+  # The scoring command doesn't work at the moment because hackerrank is still on .net core 3
+  # scoring:
+  #   command: rm -rf reports && dotnet build && dotnet test --logger xunit --results-directory ./reports/
+  #   files: [reports/TestResults.xml]
